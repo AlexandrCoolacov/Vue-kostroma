@@ -3,6 +3,7 @@
    <div class="container">
     <div class="card-container">
        <div
+       v-bind:post ="post"
        v-for="post in POSTS"
        :key="post.id"
        class="card">
@@ -24,7 +25,12 @@
            <div class="card_footer__date">
              <p>{{post.date}}</p>
            </div>
-           <Counter/>
+           <div class="card_footer__like">
+               <img
+               @click="counterUp(post)"
+               src="../assets/img/Vector.svg" alt="">
+               <p>{{post.like}}</p>
+            </div>
          </div>
        </div>
     </div>
@@ -33,12 +39,12 @@
 </template>
 
 <script>
-import Counter from '../components/Counter.vue'
+// import Counter from '../components/Counter.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'HelloWorld',
   components: {
-    Counter
+    // Counter
   },
   data () {
     return {
@@ -49,7 +55,10 @@ export default {
   methods: {
     ...mapActions([
       'GET_POSTS'
-    ])
+    ]),
+    counterUp (post) {
+      return post.like++
+    }
 
   },
   computed: {
@@ -181,6 +190,14 @@ font-size: 14px;
       // border: 1px solid black;
       display: flex;
       justify-content: space-between;
+      &__like{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            margin-right: 5px;
+        }
+}
       &__date{
 
         color:black;
