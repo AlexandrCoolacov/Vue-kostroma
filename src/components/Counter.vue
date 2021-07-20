@@ -29,9 +29,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     img{
-        position: relative;
         margin-right: 5px;
-        top: -2px;
+
     }
 }
 
