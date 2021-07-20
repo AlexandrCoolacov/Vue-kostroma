@@ -2,7 +2,7 @@
      <div class="card_footer__like">
              <img
              @click="counterUp"
-             src="../assets/Vector.svg" alt="">
+             src="../assets/img/Vector.svg" alt="">
              <p>{{counter}}</p>
     </div>
 </template>
@@ -29,7 +29,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     img{
+        position: relative;
         margin-right: 5px;
+        top: -2px;
     }
 }
 

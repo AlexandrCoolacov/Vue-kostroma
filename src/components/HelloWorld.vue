@@ -8,7 +8,7 @@
        class="card">
          <div class="card_logo">
            <div class="card_logo__image">
-             <img src="../assets/image_23.png" alt="">
+             <img :src="require('../assets/img/' + post.image) " alt="">
            </div>
            <div class="card_logo__name">
              <p>#{{post.tag}}</p>
