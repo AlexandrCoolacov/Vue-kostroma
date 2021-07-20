@@ -1,59 +1,204 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+ <div>
+   <div class="container">
+    <div class="card-container">
+       <div
+       v-for="post in POSTS"
+       :key="post.id"
+       class="card">
+         <div class="card_logo">
+           <div class="card_logo__image">
+             <img src="../assets/image_23.png" alt="">
+           </div>
+           <div class="card_logo__name">
+             <p>#{{post.tag}}</p>
+           </div>
+         </div>
+         <div class="card_title">
+           <p>{{post.name}}</p>
+         </div>
+         <div class="card_subtitle">
+           <p>{{post.description}}</p>
+         </div>
+         <div class="card_footer">
+           <div class="card_footer__date">
+             <p>{{post.date}}</p>
+           </div>
+           <Counter/>
+         </div>
+       </div>
+    </div>
+   </div>
+ </div>
 </template>
 
 <script>
+import Counter from '../components/Counter.vue'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  components: {
+    Counter
+  },
+  data () {
+    return {
+
+    }
+  },
+
+  methods: {
+    ...mapActions([
+      'GET_POSTS'
+    ])
+
+  },
+  computed: {
+    ...mapGetters([
+      'POSTS'
+    ])
+  },
+  mounted () {
+    this.GET_POSTS()
   }
+
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+*{
+padding: 0;
+margin: 0;
+border: 0;
 }
-ul {
-  list-style-type: none;
+html,body{
+height: 100%;
+width: 100%;
+font-size: 100%;
+line-height: 1;
+font-size: 14px;
+-ms-text-size-adjust: 100%;
+-moz-text-size-adjust: 100%;
+-webkit-text-size-adjust: 100%;
+}
+
+.container {
+  max-width: 1920px;
+  height: 1548px;
+  margin: 0 auto;
+  // border: 1px solid black;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(450px,1fr));
+  // grid-template-rows: repeat(auto-fit, minmax(450px,1fr));
+  position: relative;
+
   padding: 0;
+  .card-container{
+    max-width: 1920px;
+    height: 1100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px,1fr));
+    grid-template-rows: 450px 450px;
+    position: relative;
+    grid-row-gap: 20px;
+    grid-column-gap: 15px;
+    padding: 0;
+    margin: 182px 30px;
+    // border: 1px solid black;
+    .card{
+    position: relative;
+    padding: 0;
+    width: 450px;
+    height: 450px;
+     border: 1px solid black;
+    &_logo{
+      &__name{
+        width: 102px;
+        height: 33px;
+        position: absolute;
+        margin-left: 18px;
+        top: 208px;
+        background: rgba(141, 190, 80, 0.5);
+        border-radius: 4px;
+        p{
+          position: relative;
+          top: 4px;
+          color: white;
+          font-family: 'Ubuntu';
+          font-style: normal;
+          font-weight: normal;
+          font-size: 15px;
+          line-height: 22px;
+        }
+      }
+      &__image{
+        width: 450px;
+        height: 250px;
+        img{
+          margin: 0 10px;
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          object-fit: cover;
+
+        }
+
+      }
+    }
+    .card_title{
+      padding: 0;
+      margin: 21px 18px;
+      p{
+        text-align: left;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        color: #000000;
+      }
+    }
+    .card_subtitle{
+      padding: 0;
+      margin: 28px 18px ;
+      p{
+        text-align: left;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 22px;
+        color: #666565;
+      }
+    }
+    .card_footer{
+      margin: -5px 18px;
+
+      height: 30px;
+      // border: 1px solid black;
+      display: flex;
+      justify-content: space-between;
+      &__date{
+
+        color:black;
+        // border: 1px solid black;
+        p{
+          font-family: Ubuntu;
+          font-style: italic;
+          font-weight: normal;
+          font-size: 13px;
+          line-height: 22px;
+          color: #909599;
+        }
+      }
+
+    }
+    }
+  }
+
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>

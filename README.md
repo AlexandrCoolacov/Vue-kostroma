@@ -1,24 +1,18 @@
-# vue-kos
 
-## Project setup
+В терминале:
+Инициализация проекта и установка необходимых зависимостей
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Запуск среды разработки
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+ПОдготовка проекта к выпуску
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
